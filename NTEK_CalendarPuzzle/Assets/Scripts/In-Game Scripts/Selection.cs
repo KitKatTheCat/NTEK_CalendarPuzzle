@@ -41,6 +41,8 @@ public class Selection : MonoBehaviour
             }
         }
 
+        
+
         // Selection
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -67,5 +69,33 @@ public class Selection : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.E) && selection != null)
+        {
+            selection.Rotate(0f, 0f, -90f); // Rotate the selected GameObject by 90 degrees around the Y-axis
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && selection != null)
+        {
+            selection.Rotate(0f, 0f, 90f); // Rotate the selected GameObject by 90 degrees around the Y-axis
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && selection != null)
+        {
+            FlipXAxis(selection);
+        }
     }
+
+    private void FlipXAxis(Transform objToFlip)
+    {
+        // Get the current scale of the GameObject
+        Vector3 currentScale = objToFlip.localScale;
+
+        // Flip the GameObject along the X-axis
+        currentScale.x *= -1f;
+
+        // Update the scale of the GameObject
+        objToFlip.localScale = currentScale;
+    }
+
 }

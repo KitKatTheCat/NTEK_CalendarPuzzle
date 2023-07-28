@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Dragging : MonoBehaviour
 {
-    public delegate void DragEndedDelegate(Dragging DraggingObject);
-
-    public DragEndedDelegate dragEndedCallback;
-
-    [SerializeField] private GameObject grid;
     private Vector3 mouseDragStartPosition;
     private Vector3 spriteDragStartPosition;
     private Vector2 initialPos;
@@ -21,7 +16,6 @@ public class Dragging : MonoBehaviour
         isDragged = true;
         mouseDragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         spriteDragStartPosition = transform.localPosition;
-        grid.SetActive(true);
     }
 
     private void OnMouseDrag()
@@ -29,7 +23,6 @@ public class Dragging : MonoBehaviour
         if (isDragged)
         {
             transform.localPosition = spriteDragStartPosition + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - mouseDragStartPosition);
-            grid.SetActive(true);
         }
         
     }
@@ -37,12 +30,10 @@ public class Dragging : MonoBehaviour
     private void OnMouseUp()
     {
         isDragged = false;
-        grid.SetActive(false);
         if (isWalled)
         {
             transform.position = initialPos;
         }
-        dragEndedCallback(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,7 +42,7 @@ public class Dragging : MonoBehaviour
         {
             isWalled = true;
         }
-        Debug.Log("isWalled " + isWalled);
+        // Debug.Log("isWalled " + isWalled);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -60,6 +51,6 @@ public class Dragging : MonoBehaviour
         {
             isWalled = false;
         }
-        Debug.Log("isWalled " + isWalled);
+        // Debug.Log("isWalled " + isWalled);
     }
 }

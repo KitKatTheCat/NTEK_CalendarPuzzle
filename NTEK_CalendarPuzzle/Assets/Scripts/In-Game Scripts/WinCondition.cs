@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Globalization;
+using UnityEngine.SceneManagement;
 
 public class WinCondition : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class WinCondition : MonoBehaviour
         {
             // Player has matched all cells with today's date, they have won!
             // Put your winning logic here.
-            Debug.Log("Congratulations! You have won!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 

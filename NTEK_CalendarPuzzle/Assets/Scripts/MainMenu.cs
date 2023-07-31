@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject MainMenuUIHolder;
     [SerializeField] private GameObject OptionsUIHolder;
+    [SerializeField] private GameObject TitleUIHolder;
 
     public void PlayGame()
     {
@@ -15,6 +16,7 @@ public class MainMenu : MonoBehaviour
 
     public void OpenOptions()
     {
+        TitleUIHolder.SetActive(false);
         MainMenuUIHolder.SetActive(false);
         OptionsUIHolder.SetActive(true);
     }

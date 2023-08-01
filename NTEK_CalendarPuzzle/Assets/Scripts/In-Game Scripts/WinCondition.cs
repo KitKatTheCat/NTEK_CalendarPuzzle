@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.Globalization;
 using UnityEngine.SceneManagement;
+using System;
 
 public class WinCondition : MonoBehaviour
 {
-    [SerializeField]private List<GameObject> days;
-    [SerializeField]private List<GameObject> months;
+    [SerializeField] private List<GameObject> days;
+    [SerializeField] private List<GameObject> months;
+    private string currentMonth;
 
     // Update is called once per frame
     private void Update()
@@ -23,70 +23,112 @@ public class WinCondition : MonoBehaviour
 
         // Access different components of the date
         int currentDay = currentDate.Day;
-        int currentMonth = currentDate.Month;
+        int currentMonthInt = currentDate.Month;
 
-        // Check if all the day tiles and month tiles are unoccupied
-        bool allDaysMatched = true;
+        // Counters for unoccupied day and month tiles
+        int unoccupiedDays = 0;
+        int unoccupiedMonths = 0;
+        GameObject lastUnoccupiedDayTile = null;
+        GameObject lastUnoccupiedMonthTile = null;
+
         foreach (GameObject day in days)
         {
             Tile tile = day.GetComponent<Tile>();
             if (tile != null)
             {
-                int dayNumber;
-                if (int.TryParse(day.name, out dayNumber))
+                // Make sure the day number has leading zeros for matching
+                string formattedDayNumber = currentDay.ToString("D2");
+                if (!tile.IsOccupied())
                 {
-                    if (tile.IsOccupied() || dayNumber != currentDay)
-                    {
-                        allDaysMatched = false;
-                        break; // No need to continue checking, we already found one mismatch
-                    }
+                    unoccupiedDays++;
+                    lastUnoccupiedDayTile = day;
                 }
+
+                // Log the status of each day
+                // Debug.Log("Day " + day.name + " Occupied: " + tile.IsOccupied());
+                // Debug.Log("LastUnoccupiedDayTile: " + lastUnoccupiedDayTile);
             }
         }
 
-        bool allMonthsMatched = true;
         foreach (GameObject month in months)
         {
             Tile tile = month.GetComponent<Tile>();
             if (tile != null)
             {
-                string monthName = month.name;
-                int monthNumber = MonthNumberFromName(monthName);
-                if (tile.IsOccupied() || monthNumber != currentMonth)
+                // Make sure the month name is capitalized for matching
+                string formattedMonthName = currentMonthInt.ToString("MMM");
+                if (!tile.IsOccupied())
                 {
-                    allMonthsMatched = false;
-                    break; // No need to continue checking, we already found one mismatch
+                    unoccupiedMonths++;
+                    lastUnoccupiedMonthTile = month;
                 }
+
+                // Log the status of each month
+                // Debug.Log("Month " + month.name + " Occupied: " + tile.IsOccupied());
+                // Debug.Log("LastUnoccupiedMonthTile: " + lastUnoccupiedMonthTile);
             }
         }
 
-        // If both allDaysMatched and allMonthsMatched are true, then the player has matched all cells with today's date
-        if (allDaysMatched && allMonthsMatched)
+        switch(currentMonthInt)
         {
-            // Player has matched all cells with today's date, they have won!
-            // Put your winning logic here.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            case 1:
+                currentMonth = "Jan";
+                break;
+            case 2:
+                currentMonth = "Feb";
+                break;
+            case 3:
+                currentMonth = "Mar";
+                break;
+            case 4:
+                currentMonth = "Apr";
+                break;
+            case 5:
+                currentMonth = "May";
+                break;
+            case 6:
+                currentMonth = "Jun";
+                break;
+            case 7:
+                currentMonth = "Jul";
+                break;
+            case 8:
+                currentMonth = "Aug";
+                break;
+            case 9:
+                currentMonth = "Sep";
+                break;
+            case 10:
+                currentMonth = "Oct";
+                break;
+            case 11:
+                currentMonth = "Nov";
+                break;
+            case 12:
+                currentMonth = "Dec";
+                break;
         }
-    }
 
-    private int MonthNumberFromName(string monthName)
-    {
-        switch (monthName)
+        // Log the values of unoccupiedDays and unoccupiedMonths
+        // Debug.Log("Unoccupied Days: " + unoccupiedDays);
+        // Debug.Log("Unoccupied Months: " + unoccupiedMonths);
+
+        // If there is exactly 1 unoccupied day and 1 unoccupied month, and the current day and month are also unoccupied, the player has won
+        if (unoccupiedDays == 1 && unoccupiedMonths == 1)
         {
-            case "Jan": return 1;
-            case "Feb": return 2;
-            case "Mar": return 3;
-            case "Apr": return 4;
-            case "May": return 5;
-            case "Jun": return 6;
-            case "Jul": return 7;
-            case "Aug": return 8;
-            case "Sep": return 9;
-            case "Oct": return 10;
-            case "Nov": return 11;
-            case "Dec": return 12;
-            default: return 0; // If the abbreviation is not recognized, return 0
+            // Debug.Log("Unoccupieds Checked!");
+            // Check if the last unoccupied day and month tiles match today's date
+            if (lastUnoccupiedDayTile.name.Equals(currentDay.ToString("D2")) &&
+                lastUnoccupiedMonthTile.name.Equals(currentMonth))
+            {
+                // Put your winning logic here.
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                // Debug.Log("You Win!");
+            }
         }
+        // Debug.Log(currentDay.ToString("00"));
+        // Debug.Log(lastUnoccupiedDayTile);
+        // Debug.Log(currentMonth);
+        // Debug.Log(lastUnoccupiedMonthTile.name);
     }
-
 }

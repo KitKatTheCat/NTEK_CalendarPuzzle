@@ -10,7 +10,8 @@ public class Options : MonoBehaviour
     [SerializeField] private GameObject OptionsUIHolder;
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private GameObject TitleUIHolder;
-    [SerializeField] private Button[] graphicsQuality;
+    [SerializeField] private TMP_Dropdown graphicsQuality;
+    public float volumeValue;
 
     [SerializeField] private Slider VolumeSlider;
 
@@ -19,6 +20,12 @@ public class Options : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityValue"));
         VolumeSlider.value = PlayerPrefs.GetFloat(key: "Volume");
+    }
+
+    public void SetVolume (float volume)
+    {
+        audioMixer.SetFloat("volume", Mathf.Log10 (volume) * 20);
+        PlayerPrefs.SetFloat("volume", volume); 
     }
 
     public void SaveVolumeSettings()

@@ -9,9 +9,13 @@ public class Dragging : MonoBehaviour
     private Vector2 initialPos;
     private bool isDragged = false;
     private bool isWalled = false;
+    [SerializeField]private AudioSource initialClickSound;
+    [SerializeField]private AudioSource FinalClickSound;
+    [SerializeField]private AudioSource FailClickSound;
 
     private void OnMouseDown()
     {
+        initialClickSound.Play();
         initialPos = transform.position;
         isDragged = true;
         mouseDragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -30,6 +34,10 @@ public class Dragging : MonoBehaviour
     private void OnMouseUp()
     {
         isDragged = false;
+        if (!isWalled)
+        {
+            FinalClickSound.Play();
+        }
 
         // Check for collisions with other draggable objects
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
@@ -45,6 +53,7 @@ public class Dragging : MonoBehaviour
         // Return to initial position if there was a collision with another draggable object
         if (isWalled)
         {
+            FailClickSound.Play();
             transform.position = initialPos;
             isWalled = false; // Reset the flag after returning to the initial position
         }

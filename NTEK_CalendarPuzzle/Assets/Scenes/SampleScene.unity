@@ -5477,9 +5477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2920cd7f483be1141b1b1ae4adf90644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeRemaining: 0
-  timeIsRunning: 1
   timeText: {fileID: 931420810}
+  currentTime: 0
 --- !u!1 &944446063
 GameObject:
   m_ObjectHideFlags: 0

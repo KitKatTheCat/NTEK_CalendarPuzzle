@@ -39,17 +39,6 @@ public class Dragging : MonoBehaviour
             FinalClickSound.Play();
         }
 
-        // Check for collisions with other draggable objects
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.CompareTag("Selectable") && collider.gameObject != gameObject)
-            {
-                isWalled = true;
-                break; // No need to check further, one collision is enough to trigger returning to the initial position
-            }
-        }
-
         // Return to initial position if there was a collision with another draggable object
         if (isWalled)
         {
@@ -61,7 +50,7 @@ public class Dragging : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Selectable")
         {
             isWalled = true;
         }
@@ -70,7 +59,7 @@ public class Dragging : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Selectable")
         {
             isWalled = false;
         }

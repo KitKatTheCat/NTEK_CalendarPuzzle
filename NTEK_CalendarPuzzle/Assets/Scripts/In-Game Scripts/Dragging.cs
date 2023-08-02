@@ -12,6 +12,12 @@ public class Dragging : MonoBehaviour
     [SerializeField]private AudioSource initialClickSound;
     [SerializeField]private AudioSource FinalClickSound;
     [SerializeField]private AudioSource FailClickSound;
+    private WinCondition winCondition;
+
+    private void Start()
+    {
+        winCondition = FindObjectOfType<WinCondition>();
+    }
 
     private void OnMouseDown()
     {
@@ -46,6 +52,7 @@ public class Dragging : MonoBehaviour
             transform.position = initialPos;
             isWalled = false; // Reset the flag after returning to the initial position
         }
+        winCondition.Winning();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -11,12 +11,7 @@ public class WinCondition : MonoBehaviour
     private string currentMonth;
 
     // Update is called once per frame
-    private void Update()
-    {
-        Winning();
-    }
-
-    private void Winning()
+    public void Winning()
     {
         // Get the current date and time
         DateTime currentDate = DateTime.Now;

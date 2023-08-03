@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Dragging : MonoBehaviour
 {
+    public delegate void DragEndedDelegate(Dragging DraggingObject);
+
+    public DragEndedDelegate dragEndedCallback;
+
     private Vector3 mouseDragStartPosition;
     private Vector3 spriteDragStartPosition;
     private Vector2 initialPos;
@@ -13,6 +17,11 @@ public class Dragging : MonoBehaviour
     [SerializeField]private AudioSource FinalClickSound;
     [SerializeField]private AudioSource FailClickSound;
     private WinCondition winCondition;
+
+    public bool isFlippedX()
+    {
+        return true;
+    }
 
     private void Start()
     {
@@ -25,14 +34,14 @@ public class Dragging : MonoBehaviour
         initialPos = transform.position;
         isDragged = true;
         mouseDragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        spriteDragStartPosition = transform.localPosition;
+        spriteDragStartPosition = transform.position;
     }
 
     private void OnMouseDrag()
     {
         if (isDragged)
         {
-            transform.localPosition = spriteDragStartPosition + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - mouseDragStartPosition);
+            transform.position = spriteDragStartPosition + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - mouseDragStartPosition);
         }
         
     }
@@ -53,6 +62,7 @@ public class Dragging : MonoBehaviour
             isWalled = false; // Reset the flag after returning to the initial position
         }
         winCondition.Winning();
+        dragEndedCallback(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

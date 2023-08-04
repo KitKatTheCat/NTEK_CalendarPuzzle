@@ -78,4 +78,9 @@ public class Dragging : MonoBehaviour
             isWalled = false;
         }
     }
+
+    public bool Walled()
+    {
+        return isWalled;
+    }
 }

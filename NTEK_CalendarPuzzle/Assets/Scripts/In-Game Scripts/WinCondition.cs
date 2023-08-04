@@ -10,7 +10,6 @@ public class WinCondition : MonoBehaviour
     [SerializeField] private List<GameObject> months;
     private string currentMonth;
 
-    // Update is called once per frame
     public void Winning()
     {
         // Get the current date and time

@@ -510,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -995,7 +996,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9282155, y: 1}
+  m_Size: {x: 0.9282155, y: 0.8}
   m_EdgeRadius: 0
 --- !u!212 &222660113
 SpriteRenderer:
@@ -1035,8 +1036,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1012958487
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -2210,6 +2211,7 @@ GameObject:
   - component: {fileID: 451346765}
   - component: {fileID: 451346768}
   - component: {fileID: 451346767}
+  - component: {fileID: 451346769}
   m_Layer: 6
   m_Name: 1
   m_TagString: Selectable
@@ -2296,6 +2298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -2526,6 +2529,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &451346769
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451346760}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &510046366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,6 +2649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -4037,7 +4062,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01177001, y: -0.023077115}
+  m_Offset: {x: 0.00423263, y: -0.016460598}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4048,7 +4073,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.97646, y: 0.95384574}
+  m_Size: {x: 0.9915347, y: 0.9670787}
   m_EdgeRadius: 0
 --- !u!212 &732789092
 SpriteRenderer:
@@ -4088,8 +4113,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1012958487
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -4335,6 +4360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -4533,6 +4559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -5548,8 +5575,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1012958487
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -5990,6 +6017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -6245,6 +6273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -7978,6 +8007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5130d3edaed789f4b8d6101e2f01c7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWalledCounter: 0
   initialClickSound: {fileID: 451346768}
   finalClickSound: {fileID: 451346768}
   failClickSound: {fileID: 451346767}
@@ -8521,7 +8551,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008871734, y: -0.055615574}
+  m_Offset: {x: -0.1661591, y: -0.055615574}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8532,7 +8562,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9556416, y: 0.88876885}
+  m_Size: {x: 1.0500615, y: 0.88876885}
   m_EdgeRadius: 0
 --- !u!212 &1830568579
 SpriteRenderer:
@@ -8572,8 +8602,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1012958487
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -8927,7 +8957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001227391}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0075998, y: -0.12610012, z: 0}
+  m_LocalPosition: {x: -2.0075998, y: -0.17000002, z: 0}
   m_LocalScale: {x: 0.48993066, y: 4.510226, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8947,7 +8977,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.034267932, y: 0}
+  m_Offset: {x: -0.034267932, y: 0.0734404}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8958,7 +8988,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.93146414, y: 1}
+  m_Size: {x: 0.93146414, y: 0.8531192}
   m_EdgeRadius: 0
 --- !u!212 &2001227394
 SpriteRenderer:
@@ -8998,8 +9028,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1012958487
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -9069,7 +9099,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98946714, y: 0.87290597}
+  m_Size: {x: 0.9, y: 0.87290597}
   m_EdgeRadius: 0
 --- !u!212 &2020328625
 SpriteRenderer:
@@ -9109,8 +9139,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1012958487
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}

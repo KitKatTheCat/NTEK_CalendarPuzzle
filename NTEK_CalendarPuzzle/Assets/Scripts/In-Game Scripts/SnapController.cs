@@ -7,22 +7,26 @@ public class SnapController : MonoBehaviour
     public List<Transform> snapPoints;
     public List<Dragging> draggingObjects;
     public float snapRange = 0.5f;
+    private Dragging dragged;
+    private bool isCollidingWithWall = false;
 
     private void Start()
     {
+        dragged = FindObjectOfType<Dragging>();
         foreach (Dragging dragging in draggingObjects)
         {
             dragging.dragEndedCallback = OnDragEnded;
+            CheckCollisions(dragging); // Initial check
         }
     }
 
     private void Update()
     {
         // Loop through all the dragging objects and check for collisions
-        foreach (Dragging dragging in draggingObjects)
-        {
-            CheckCollisions(dragging);
-        }
+            foreach (Dragging dragging in draggingObjects)
+            {
+                CheckCollisions(dragging);
+            }
     }
 
     private void OnDragEnded(Dragging dragging)
@@ -59,24 +63,24 @@ public class SnapController : MonoBehaviour
 
             int numCollisions = pieceCollider.OverlapCollider(contactFilter, results);
 
-            // Check if any of the colliders are occupied snap points
-            bool isSnapPointOccupied = false;
+            // Check if any of the colliders are walls
+            isCollidingWithWall = false;
             for (int i = 0; i < numCollisions; i++)
             {
-                if (snapPoints.Contains(results[i].transform))
+                if (results[i].CompareTag("Wall") || results[i].CompareTag("Selectable"))
                 {
-                    isSnapPointOccupied = true;
+                    isCollidingWithWall = true;
                     break;
                 }
             }
 
-            if (!isSnapPointOccupied)
+            if (!isCollidingWithWall)
             {
                 dragging.transform.position = closestSnapPoint.position;
             }
             else
             {
-                // Snap point is occupied, move the dragged piece back to its initial position
+                // Colliding with a wall, move the dragged piece back to its initial position
                 dragging.transform.position = dragging.InitialPos;
             }
         }

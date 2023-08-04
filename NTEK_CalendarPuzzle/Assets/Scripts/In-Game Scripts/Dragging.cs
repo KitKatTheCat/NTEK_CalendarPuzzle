@@ -12,7 +12,7 @@ public class Dragging : MonoBehaviour
     private Vector3 spriteDragStartPosition;
     public Vector2 InitialPos { get; private set; }
     private bool isDragged = false;
-    private bool isWalled = false;
+    [SerializeField]private int isWalledCounter;
     [SerializeField] private AudioSource initialClickSound;
     [SerializeField] private AudioSource finalClickSound;
     [SerializeField] private AudioSource failClickSound;
@@ -46,17 +46,15 @@ public class Dragging : MonoBehaviour
     private void OnMouseUp()
     {
         isDragged = false;
-        if (!isWalled)
-        {
-            finalClickSound.Play();
-        }
 
-        // Return to the initial position if there was a collision with another draggable object
-        if (isWalled)
+        if (isWalledCounter > 0) // Only trigger return logic when colliding with walls
         {
             failClickSound.Play();
             transform.position = InitialPos;
-            isWalled = false; // Reset the flag after returning to the initial position
+        }
+        else
+        {
+            finalClickSound.Play();
         }
 
         winCondition.Winning();
@@ -67,20 +65,20 @@ public class Dragging : MonoBehaviour
     {
         if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Selectable")
         {
-            isWalled = true;
+            isWalledCounter += 1;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D exit)
     {
-        if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Selectable")
+        if (exit.gameObject.tag == "Wall" || exit.gameObject.tag == "Selectable")
         {
-            isWalled = false;
+            isWalledCounter -= 1;
         }
     }
 
-    public bool Walled()
+    public int Walled()
     {
-        return isWalled;
+        return isWalledCounter;
     }
 }

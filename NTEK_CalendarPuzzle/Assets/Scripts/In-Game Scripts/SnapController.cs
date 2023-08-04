@@ -7,6 +7,7 @@ public class SnapController : MonoBehaviour
     public List<Transform> snapPoints;
     public List<Dragging> draggingObjects;
     public float snapRange = 0.5f;
+    private bool walled;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class SnapController : MonoBehaviour
                 // Check if the closest snap point is occupied by another piece
                 bool isSnapPointOccupied = IsSnapPointOccupied(closestSnapPoint);
 
-                if (!isSnapPointOccupied)
+                if (!isSnapPointOccupied || !walled)
                 {
                     dragging.transform.position = closestSnapPoint.position;
                 }
@@ -61,6 +62,22 @@ public class SnapController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Wall" || other.tag == "Selectable")
+        {
+            walled = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Wall" || other.tag == "Selectable")
+        {
+            walled = false;
+        }
     }
 
 }

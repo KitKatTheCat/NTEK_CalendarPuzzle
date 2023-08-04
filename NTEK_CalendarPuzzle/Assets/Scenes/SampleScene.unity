@@ -524,8 +524,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!61 &138177416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2305,8 +2305,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!60 &451346765
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2634,8 +2634,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!60 &510046370
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4344,8 +4344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!60 &755537670
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4542,8 +4542,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!60 &779659631
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5816,7 +5816,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &1123274167
 MonoBehaviour:
@@ -5874,7 +5874,7 @@ MonoBehaviour:
   - {fileID: 779775718}
   - {fileID: 347096369}
   - {fileID: 306529115}
-  DraggingObjects:
+  draggingObjects:
   - {fileID: 451346763}
   - {fileID: 510046369}
   - {fileID: 779659630}
@@ -5883,7 +5883,7 @@ MonoBehaviour:
   - {fileID: 1136554507}
   - {fileID: 755537669}
   - {fileID: 138177415}
-  snapRange: 0.25
+  snapRange: 0.4
 --- !u!4 &1123274168
 Transform:
   m_ObjectHideFlags: 0
@@ -5999,8 +5999,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!60 &1136554508
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6254,8 +6254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!60 &1201772062
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7987,8 +7987,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialClickSound: {fileID: 451346768}
-  FinalClickSound: {fileID: 451346768}
-  FailClickSound: {fileID: 451346767}
+  finalClickSound: {fileID: 451346768}
+  failClickSound: {fileID: 451346767}
 --- !u!60 &1719426865
 PolygonCollider2D:
   m_ObjectHideFlags: 0

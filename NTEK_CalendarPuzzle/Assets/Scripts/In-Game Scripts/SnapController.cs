@@ -5,12 +5,12 @@ using UnityEngine;
 public class SnapController : MonoBehaviour
 {
     public List<Transform> snapPoints;
-    public List<Dragging> DraggingObjects;
+    public List<Dragging> draggingObjects;
     public float snapRange = 0.5f;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        foreach(Dragging dragging in DraggingObjects)
+        foreach (Dragging dragging in draggingObjects)
         {
             dragging.dragEndedCallback = OnDragEnded;
         }
@@ -18,22 +18,49 @@ public class SnapController : MonoBehaviour
 
     private void OnDragEnded(Dragging dragging)
     {
-        float closestDistance = -1;
-        Transform closestSnapPoint = null;
-
-        foreach(Transform snapPoint in snapPoints)
+        if (!dragging.IsDragged) // Check if the piece is not being dragged
         {
-            float currentDistance = Vector2.Distance(dragging.transform.position, snapPoint.position);
-            if (closestSnapPoint == null || currentDistance < closestDistance)
+            float closestDistance = -1;
+            Transform closestSnapPoint = null;
+
+            foreach (Transform snapPoint in snapPoints)
             {
-                closestSnapPoint = snapPoint;
-                closestDistance = currentDistance;
+                float currentDistance = Vector2.Distance(dragging.transform.position, snapPoint.position);
+                if (closestSnapPoint == null || currentDistance < closestDistance)
+                {
+                    closestSnapPoint = snapPoint;
+                    closestDistance = currentDistance;
+                }
+            }
+
+            if (closestSnapPoint != null && closestDistance <= snapRange)
+            {
+                // Check if the closest snap point is occupied by another piece
+                bool isSnapPointOccupied = IsSnapPointOccupied(closestSnapPoint);
+
+                if (!isSnapPointOccupied)
+                {
+                    dragging.transform.position = closestSnapPoint.position;
+                }
+                else
+                {
+                    // Snap point is occupied, move the dragged piece back to its initial position
+                    dragging.transform.position = dragging.InitialPos;
+                }
             }
         }
-
-        if (closestSnapPoint != null && closestDistance <= snapRange)
-        {
-            dragging.transform.position = closestSnapPoint.position;
-        }
     }
+
+    private bool IsSnapPointOccupied(Transform snapPoint)
+    {
+        foreach (Dragging dragging in draggingObjects)
+        {
+            if (dragging.transform.position == snapPoint.position && dragging != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class Dragging : MonoBehaviour
 {
-    public delegate void DragEndedDelegate(Dragging DraggingObject);
+    public delegate void DragEndedDelegate(Dragging draggingObject);
 
     public DragEndedDelegate dragEndedCallback;
 
     private Vector3 mouseDragStartPosition;
     private Vector3 spriteDragStartPosition;
-    private Vector2 initialPos;
+    public Vector2 InitialPos { get; private set; }
     private bool isDragged = false;
     private bool isWalled = false;
-    [SerializeField]private AudioSource initialClickSound;
-    [SerializeField]private AudioSource FinalClickSound;
-    [SerializeField]private AudioSource FailClickSound;
+    [SerializeField] private AudioSource initialClickSound;
+    [SerializeField] private AudioSource finalClickSound;
+    [SerializeField] private AudioSource failClickSound;
     private WinCondition winCondition;
 
-    public bool isFlippedX()
-    {
-        return true;
-    }
+    public bool IsDragged => isDragged; // Add a property to access the dragging flag
 
     private void Start()
     {
         winCondition = FindObjectOfType<WinCondition>();
+        InitialPos = transform.position;
     }
 
     private void OnMouseDown()
     {
         initialClickSound.Play();
-        initialPos = transform.position;
+        InitialPos = transform.position;
         isDragged = true;
         mouseDragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         spriteDragStartPosition = transform.position;
@@ -43,7 +41,6 @@ public class Dragging : MonoBehaviour
         {
             transform.position = spriteDragStartPosition + (Camera.main.ScreenToWorldPoint(Input.mousePosition) - mouseDragStartPosition);
         }
-        
     }
 
     private void OnMouseUp()
@@ -51,16 +48,17 @@ public class Dragging : MonoBehaviour
         isDragged = false;
         if (!isWalled)
         {
-            FinalClickSound.Play();
+            finalClickSound.Play();
         }
 
-        // Return to initial position if there was a collision with another draggable object
+        // Return to the initial position if there was a collision with another draggable object
         if (isWalled)
         {
-            FailClickSound.Play();
-            transform.position = initialPos;
+            failClickSound.Play();
+            transform.position = InitialPos;
             isWalled = false; // Reset the flag after returning to the initial position
         }
+
         winCondition.Winning();
         dragEndedCallback(this);
     }
@@ -71,7 +69,6 @@ public class Dragging : MonoBehaviour
         {
             isWalled = true;
         }
-        // Debug.Log("isWalled " + isWalled);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -80,6 +77,5 @@ public class Dragging : MonoBehaviour
         {
             isWalled = false;
         }
-        // Debug.Log("isWalled " + isWalled);
     }
 }
